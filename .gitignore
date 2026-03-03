@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data (intermediate and output are generated)
+data/intermediate/
+data/output/
+
+# Model weights (too large for git)
+*.ckpt
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Unity
+unity_project/Library/
+unity_project/Temp/
+unity_project/Obj/
+unity_project/Build/
+unity_project/Builds/
+unity_project/Logs/
+unity_project/UserSettings/
+unity_project/MemoryCaptures/
+*.csproj
+*.sln
+
+# Misc
+*.log
+.env

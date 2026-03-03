@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "worldgen"
+version = "0.1.0"
+description = "Reproduction of Meta's WorldGen: Text to Traversable 3D Worlds"
+requires-python = ">=3.10"
+dependencies = [
+    # Core mesh processing
+    "trimesh>=4.0",
+    "open3d>=0.18",
+    "numpy>=1.24",
+    "scipy>=1.11",
+    "shapely>=2.0",
+
+    # Noise generation
+    "opensimplex>=0.4",
+
+    # Rendering
+    "pyrender>=0.1.45",
+    "Pillow>=10.0",
+    "opencv-python>=4.8",
+
+    # UV unwrapping
+    "xatlas>=0.0.9",
+
+    # Configuration
+    "pyyaml>=6.0",
+    "pydantic>=2.0",
+
+    # LLM
+    "anthropic>=0.39",
+
+    # ML / Diffusion (install separately with CUDA)
+    # torch>=2.1
+    # diffusers>=0.27
+    # transformers>=4.36
+    # accelerate>=0.25
+
+    # Export
+    "pygltflib>=1.16",
+
+    # Logging
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+ml = [
+    "torch>=2.1",
+    "torchvision>=0.16",
+    "diffusers>=0.27",
+    "transformers>=4.36",
+    "accelerate>=0.25",
+]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.1",
+]
+
+[project.scripts]
+worldgen = "scripts.run_pipeline:main"
+
+[tool.setuptools.packages.find]
+include = ["src*", "scripts*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

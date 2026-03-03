@@ -1,0 +1,113 @@
+# WorldGen Global Configuration
+
+project:
+  name: "worldgen"
+  seed: 42
+  scene_extent_meters: 50  # Default scene size (50x50m)
+  output_dir: "data/output"
+  intermediate_dir: "data/intermediate"
+
+gpu:
+  device: "cuda"
+  vram_limit_gb: 24.0
+  dtype: "float16"  # Use float16 for all ML models to save VRAM
+
+stage1:
+  # LLM Parser
+  llm_provider: "anthropic"  # anthropic | local
+  llm_model: "claude-sonnet-4-20250514"
+
+  # Terrain
+  terrain_resolution: 256  # Grid cells per axis
+  noise_seed: 42
+
+  # Partitioning
+  default_partition_method: "voronoi"  # voronoi | bsp | grid
+  voronoi_relaxation_iters: 5
+
+  # Asset Placement
+  poisson_disk_min_distance: 2.0  # meters
+
+  # Navmesh
+  navmesh:
+    cell_size: 0.3
+    cell_height: 0.2
+    agent_height: 2.0
+    agent_radius: 0.6
+    agent_max_climb: 0.9
+    agent_max_slope: 45.0
+
+  # Reference Image
+  reference_image:
+    resolution: 1024
+    controlnet_model: "diffusers/controlnet-depth-sdxl-1.0"
+    base_model: "stabilityai/stable-diffusion-xl-base-1.0"
+    num_inference_steps: 30
+    controlnet_conditioning_scale: 0.8
+
+stage2:
+  # Image to 3D
+  backend: "hunyuan3d"  # trellis2 | triposr | hunyuan3d | instantmesh
+  trellis2:
+    resolution: 512  # 512^3 voxel resolution
+    use_wsl2: true   # Run via WSL2 subprocess on Windows
+  hunyuan3d:
+    num_inference_steps: 100  # default 50, more steps = better shape
+    octree_resolution: 512    # default 384, max 512 = finest mesh detail
+    guidance_scale: 7.5       # default 5.0, stronger image adherence
+    num_chunks: 20000         # default 8000, faster decoding (more VRAM)
+  triposr:
+    resolution: 256
+    half_precision: true
+
+  # Navmesh Alignment
+  alignment:
+    scale_tolerance: 0.1       # 10% bounding box tolerance
+    ground_plane_threshold: 0.3  # meters RMS
+    raycast_deviation_max: 0.5   # meters
+
+stage3:
+  # Decomposition
+  vertex_weld_epsilon: 0.001  # meters
+  proximity_threshold: 0.05   # meters for connectivity graph
+  min_face_count: 500         # Minimum faces per part
+  target_part_range: [3, 15]  # Target number of parts
+
+  # Ground Detection
+  ground_normal_threshold: 0.7  # dot product with up vector
+
+  # DBSCAN fallback
+  dbscan_eps: 0.5
+  dbscan_min_samples: 50
+
+stage4:
+  # VLM Describer
+  vlm_provider: "anthropic"  # anthropic | llava_local
+  vlm_model: "claude-sonnet-4-20250514"
+
+  # Image Enhancement
+  enhancement:
+    strength: 0.6             # img2img denoising strength
+    iou_threshold: 0.85       # Silhouette IoU check
+    max_retries: 3
+
+  # Multi-view Texture
+  texture:
+    backend: "mvpaint"        # mvpaint | syncmvd | manual
+    num_side_views: 8
+    texture_resolution: 2048  # 2K UV texture
+
+  # Delighting
+  delight:
+    backend: "ic_light"       # ic_light | intrinsic
+    num_inference_steps: 20
+
+  # UV
+  uv:
+    max_stretch: 0.3
+    padding: 4  # pixels
+
+export:
+  format: "glb"  # glb | gltf
+  embed_textures: true
+  compress_meshes: false

@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone:*)",
+      "Bash(venv/Scripts/pip install:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(powershell -Command:*)",
+      "Bash(venv/Scripts/pip.exe:*)",
+      "Bash(xargs ls:*)",
+      "Bash(where:*)",
+      "Bash(.venv/Scripts/python:*)",
+      "Bash(ls:*)",
+      "Bash(d:/Qiao/WorldGen/venv/Scripts/python.exe:*)",
+      "Bash(# Check for CUDA in common locations for dir in \"\"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA\"\" \"\"C:/CUDA\"\" \"\"$CUDA_PATH\"\" \"\"$CUDA_HOME\"\"; do if [ -d \"\"$dir\"\" ] ; then echo \"\"Found: $dir\"\" ls \"\"$dir\"\" fi done # Check env vars echo \"\"CUDA_PATH=$CUDA_PATH\"\" echo \"\"CUDA_HOME=$CUDA_HOME\"\" # Search for nvcc find \"\"C:/Program Files\"\" -name \"\"nvcc.exe\"\" -maxdepth 5)",
+      "Bash(# Check for VS Build Tools or VS installation find \"\"C:/Program Files/Microsoft Visual Studio\"\" \"\"C:/Program Files \\(x86\\)/Microsoft Visual Studio\"\" -name \"\"cl.exe\"\" -maxdepth 10)",
+      "Bash(# Check if MSVC has cl.exe find \"\"D:/Program Files/Microsoft Visual Studio/2022/Community\"\" -name \"\"cl.exe\"\" -maxdepth 10)",
+      "Bash(# Check for CUDA toolkit in all common locations for base in \"\"C:/Program Files\"\" \"\"D:/Program Files\"\" \"\"C:/NVIDIA\"\" \"\"D:/NVIDIA\"\"; do find \"\"$base\"\" -name \"\"nvcc.exe\"\" -maxdepth 8 done # Check registry-style env vars cmd.exe /c \"\"echo %CUDA_PATH%\"\" # Check if nvidia-smi reports CUDA version nvidia-smi)",
+      "Bash(cmd.exe /c \"d:\\\\Qiao\\\\WorldGen\\\\venv\\\\Scripts\\\\python.exe --version\")",
+      "Bash(cmd.exe /c \"d:\\\\Qiao\\\\WorldGen\\\\venv\\\\Scripts\\\\python.exe -c \"\"import sys; print\\(sys.version\\)\"\"\")",
+      "Bash(cmd.exe /c \"C:\\\\Users\\\\yuyic\\\\AppData\\\\Local\\\\Python\\\\pythoncore-3.12-64\\\\python.exe -c \"\"print\\(''hello''\\)\"\"\")",
+      "Bash(cmd.exe /c \"where python\")",
+      "Bash(\"C:/Users/yuyic/AppData/Local/Python/pythoncore-3.12-64/python.exe\" -c \"print\\(''hello''\\)\")",
+      "Bash(\"C:/Users/yuyic/AppData/Local/Python/pythoncore-3.12-64/python.exe\" -c:*)",
+      "Bash(\"C:/Users/yuyic/AppData/Local/Python/pythoncore-3.12-64/python.exe\" -m venv d:/Qiao/WorldGen/venv --upgrade)",
+      "WebFetch(domain:hpc.ncsu.edu)",
+      "Bash(du:*)",
+      "Bash(# Check the big ones - what''s in .cache? du -sh /c/Users/yuyic/.cache/*/)",
+      "Bash(# Check what''s in Temp that''s large du -sh /c/Users/yuyic/AppData/Local/Temp/*/)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(python -c:*)",
+      "Bash(pip show:*)",
+      "Bash(pip index:*)",
+      "Bash(pip install:*)",
+      "Bash(find:*)"
+    ]
+  }
+}
